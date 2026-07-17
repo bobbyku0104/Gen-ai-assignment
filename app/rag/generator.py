@@ -18,8 +18,8 @@ class AnswerGenerator:
             # Configure standard google-generativeai API key
             genai.configure(api_key=settings.GEMINI_API_KEY)
             
-            # Using gemini-1.5-flash as the default cost-efficient, low-latency model
-            self.model = genai.GenerativeModel("gemini-1.5-flash")
+            # Using gemini-2.5-flash as the default cost-efficient, low-latency model
+            self.model = genai.GenerativeModel("gemini-2.5-flash")
             logger.info("Google Gemini client configured successfully.")
         except Exception as e:
             logger.error(f"Failed to configure Google Gemini API client: {e}")

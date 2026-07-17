@@ -46,16 +46,16 @@ HTML_DASHBOARD = """
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
         :root {
-            --bg-primary: #0b0f19;
-            --bg-secondary: rgba(17, 24, 39, 0.7);
+            --bg-primary: #070514;
+            --bg-secondary: rgba(13, 10, 26, 0.7);
             --border-color: rgba(255, 255, 255, 0.08);
             --text-primary: #f3f4f6;
-            --text-secondary: #9ca3af;
-            --accent-glow: #6366f1;
-            --accent-hover: #4f46e5;
+            --text-secondary: #a7a6ba;
+            --accent-glow: #a855f7;
+            --accent-hover: #8b5cf6;
             --danger: #ef4444;
             --success: #10b981;
-            --card-glass: rgba(31, 41, 55, 0.35);
+            --card-glass: rgba(43, 31, 75, 0.25);
             --sidebar-width: 320px;
             --content-max-width: 760px;
         }
@@ -75,8 +75,8 @@ HTML_DASHBOARD = """
             overflow: hidden;
             display: flex;
             background-image: 
-                radial-gradient(at 0% 0%, rgba(99, 102, 241, 0.12) 0px, transparent 50%),
-                radial-gradient(at 100% 100%, rgba(139, 92, 246, 0.08) 0px, transparent 50%);
+                radial-gradient(at 0% 0%, rgba(168, 85, 247, 0.15) 0px, transparent 50%),
+                radial-gradient(at 100% 100%, rgba(217, 70, 239, 0.1) 0px, transparent 50%);
         }
 
         /* Layout Grid */
@@ -110,14 +110,14 @@ HTML_DASHBOARD = """
         .logo-icon {
             width: 30px;
             height: 30px;
-            background: linear-gradient(135deg, #6366f1, #8b5cf6);
+            background: linear-gradient(135deg, #a855f7, #ec4899);
             border-radius: 8px;
             display: flex;
             align-items: center;
             justify-content: center;
             font-weight: 700;
             color: white;
-            box-shadow: 0 0 16px rgba(99, 102, 241, 0.4);
+            box-shadow: 0 0 16px rgba(168, 85, 247, 0.4);
             font-size: 0.9rem;
         }
 
@@ -132,7 +132,7 @@ HTML_DASHBOARD = """
         /* Upload Area */
         .upload-card {
             background: var(--card-glass);
-            border: 1.5px dashed rgba(99, 102, 241, 0.3);
+             border: 1.5px dashed rgba(168, 85, 247, 0.35);
             border-radius: 12px;
             padding: 20px;
             text-align: center;
@@ -144,8 +144,8 @@ HTML_DASHBOARD = """
 
         .upload-card:hover, .upload-card.dragover {
             border-color: var(--accent-glow);
-            background: rgba(99, 102, 241, 0.04);
-            box-shadow: 0 0 20px rgba(99, 102, 241, 0.1);
+            background: rgba(168, 85, 247, 0.04);
+            box-shadow: 0 0 20px rgba(168, 85, 247, 0.12);
         }
 
         .upload-icon {
@@ -396,8 +396,8 @@ HTML_DASHBOARD = """
         }
 
         .message-row.user .message-bubble {
-            background: rgba(99, 102, 241, 0.1);
-            border: 1px solid rgba(99, 102, 241, 0.25);
+             background: rgba(168, 85, 247, 0.12);
+            border: 1px solid rgba(168, 85, 247, 0.28);
             color: var(--text-primary);
             border-radius: 18px;
             padding: 12px 18px;
@@ -439,9 +439,9 @@ HTML_DASHBOARD = """
         }
 
         .avatar.assistant-avatar {
-            background: linear-gradient(135deg, #6366f1, #8b5cf6);
+            background: linear-gradient(135deg, #a855f7, #ec4899);
             color: white;
-            box-shadow: 0 0 10px rgba(99, 102, 241, 0.2);
+            box-shadow: 0 0 10px rgba(168, 85, 247, 0.25);
         }
 
         /* Sleek Citations Drawer */

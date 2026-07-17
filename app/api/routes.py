@@ -56,7 +56,8 @@ HTML_DASHBOARD = """
             --danger: #ef4444;
             --success: #10b981;
             --card-glass: rgba(31, 41, 55, 0.35);
-            --sidebar-width: 380px;
+            --sidebar-width: 320px;
+            --content-max-width: 760px;
         }
 
         * {
@@ -74,8 +75,8 @@ HTML_DASHBOARD = """
             overflow: hidden;
             display: flex;
             background-image: 
-                radial-gradient(at 0% 0%, rgba(99, 102, 241, 0.15) 0px, transparent 50%),
-                radial-gradient(at 100% 100%, rgba(139, 92, 246, 0.1) 0px, transparent 50%);
+                radial-gradient(at 0% 0%, rgba(99, 102, 241, 0.12) 0px, transparent 50%),
+                radial-gradient(at 100% 100%, rgba(139, 92, 246, 0.08) 0px, transparent 50%);
         }
 
         /* Layout Grid */
@@ -93,21 +94,22 @@ HTML_DASHBOARD = """
             backdrop-filter: blur(16px);
             display: flex;
             flex-direction: column;
-            padding: 24px;
+            padding: 24px 20px;
             overflow-y: auto;
             gap: 24px;
+            height: 100%;
         }
 
         .logo-section {
             display: flex;
             align-items: center;
-            gap: 12px;
+            gap: 10px;
             padding-bottom: 8px;
         }
 
         .logo-icon {
-            width: 32px;
-            height: 32px;
+            width: 30px;
+            height: 30px;
             background: linear-gradient(135deg, #6366f1, #8b5cf6);
             border-radius: 8px;
             display: flex;
@@ -116,10 +118,11 @@ HTML_DASHBOARD = """
             font-weight: 700;
             color: white;
             box-shadow: 0 0 16px rgba(99, 102, 241, 0.4);
+            font-size: 0.9rem;
         }
 
         .logo-title {
-            font-size: 1.15rem;
+            font-size: 1.05rem;
             font-weight: 700;
             background: linear-gradient(to right, #ffffff, #a78bfa);
             -webkit-background-clip: text;
@@ -129,37 +132,38 @@ HTML_DASHBOARD = """
         /* Upload Area */
         .upload-card {
             background: var(--card-glass);
-            border: 2px dashed rgba(99, 102, 241, 0.3);
+            border: 1.5px dashed rgba(99, 102, 241, 0.3);
             border-radius: 12px;
-            padding: 24px;
+            padding: 20px;
             text-align: center;
             cursor: pointer;
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            transition: all 0.3s ease;
             position: relative;
+            overflow: hidden;
         }
 
         .upload-card:hover, .upload-card.dragover {
             border-color: var(--accent-glow);
-            background: rgba(99, 102, 241, 0.05);
-            box-shadow: 0 0 20px rgba(99, 102, 241, 0.15);
+            background: rgba(99, 102, 241, 0.04);
+            box-shadow: 0 0 20px rgba(99, 102, 241, 0.1);
         }
 
         .upload-icon {
-            font-size: 2rem;
-            margin-bottom: 12px;
+            font-size: 1.8rem;
+            margin-bottom: 8px;
             display: block;
         }
 
         .upload-text {
-            font-size: 0.9rem;
-            font-weight: 500;
+            font-size: 0.85rem;
+            font-weight: 600;
             color: var(--text-primary);
         }
 
         .upload-subtext {
             font-size: 0.75rem;
             color: var(--text-secondary);
-            margin-top: 6px;
+            margin-top: 4px;
         }
 
         #file-input {
@@ -168,39 +172,38 @@ HTML_DASHBOARD = """
 
         /* Progress indicator */
         .progress-bar {
-            height: 4px;
+            height: 3px;
             width: 0%;
             background: linear-gradient(to right, #6366f1, #8b5cf6);
             position: absolute;
             bottom: 0;
             left: 0;
-            border-radius: 0 0 12px 12px;
             transition: width 0.2s ease;
         }
 
         .upload-status {
-            font-size: 0.8rem;
-            margin-top: 10px;
-            font-weight: 500;
+            font-size: 0.75rem;
+            margin-top: 8px;
+            font-weight: 600;
             color: var(--accent-glow);
             display: none;
         }
 
         /* Document Inventory */
         .doc-section-title {
-            font-size: 0.8rem;
+            font-size: 0.75rem;
             font-weight: 700;
             text-transform: uppercase;
             letter-spacing: 0.05em;
             color: var(--text-secondary);
-            margin-bottom: 8px;
+            margin-bottom: 12px;
             display: flex;
             justify-content: space-between;
             align-items: center;
         }
 
         .doc-count-badge {
-            background: rgba(255, 255, 255, 0.08);
+            background: rgba(255, 255, 255, 0.06);
             padding: 2px 8px;
             border-radius: 12px;
             font-size: 0.7rem;
@@ -210,14 +213,14 @@ HTML_DASHBOARD = """
         .doc-list {
             display: flex;
             flex-direction: column;
-            gap: 12px;
+            gap: 10px;
         }
 
         .doc-item {
             background: var(--card-glass);
             border: 1px solid var(--border-color);
             border-radius: 10px;
-            padding: 14px;
+            padding: 12px;
             display: flex;
             align-items: center;
             justify-content: space-between;
@@ -225,20 +228,19 @@ HTML_DASHBOARD = """
         }
 
         .doc-item:hover {
-            border-color: rgba(255, 255, 255, 0.15);
+            border-color: rgba(255, 255, 255, 0.12);
             background: rgba(255, 255, 255, 0.02);
-            transform: translateY(-1px);
         }
 
         .doc-info {
             display: flex;
             flex-direction: column;
-            gap: 4px;
+            gap: 2px;
             max-width: 80%;
         }
 
         .doc-name {
-            font-size: 0.85rem;
+            font-size: 0.8rem;
             font-weight: 600;
             white-space: nowrap;
             overflow: hidden;
@@ -250,14 +252,14 @@ HTML_DASHBOARD = """
             font-size: 0.7rem;
             color: var(--text-secondary);
             display: flex;
-            gap: 8px;
+            gap: 6px;
         }
 
         .doc-delete-btn {
             background: transparent;
             border: none;
             cursor: pointer;
-            padding: 6px;
+            padding: 4px;
             border-radius: 6px;
             color: var(--text-secondary);
             transition: all 0.2s ease;
@@ -272,33 +274,34 @@ HTML_DASHBOARD = """
         }
 
         .doc-delete-btn svg {
-            width: 16px;
-            height: 16px;
+            width: 14px;
+            height: 14px;
             fill: currentColor;
         }
 
         .empty-docs {
             text-align: center;
-            padding: 30px 10px;
-            font-size: 0.8rem;
+            padding: 24px 10px;
+            font-size: 0.75rem;
             color: var(--text-secondary);
             border: 1px dashed var(--border-color);
-            border-radius: 10px;
+            border-radius: 8px;
         }
 
         /* Workspace Pane */
         .workspace {
             display: flex;
             flex-direction: column;
-            height: 100%;
+            height: 100vh;
+            overflow: hidden;
             position: relative;
         }
 
         /* Workspace Header */
         .workspace-header {
-            height: 70px;
+            height: 60px;
             border-bottom: 1px solid var(--border-color);
-            padding: 0 32px;
+            padding: 0 24px;
             display: flex;
             align-items: center;
             justify-content: space-between;
@@ -311,34 +314,34 @@ HTML_DASHBOARD = """
             display: flex;
             align-items: center;
             gap: 8px;
-            font-size: 0.8rem;
+            font-size: 0.75rem;
             font-weight: 500;
             color: var(--text-secondary);
         }
 
         .status-dot {
-            width: 8px;
-            height: 8px;
+            width: 7px;
+            height: 7px;
             background: var(--danger);
             border-radius: 50%;
-            box-shadow: 0 0 8px var(--danger);
+            box-shadow: 0 0 6px var(--danger);
         }
 
         .status-dot.online {
             background: var(--success);
-            box-shadow: 0 0 8px var(--success);
+            box-shadow: 0 0 6px var(--success);
         }
 
         .perf-banner {
             display: flex;
-            gap: 16px;
-            font-size: 0.75rem;
+            gap: 12px;
+            font-size: 0.7rem;
             color: var(--text-secondary);
         }
 
         .perf-item {
-            background: rgba(255, 255, 255, 0.04);
-            padding: 4px 10px;
+            background: rgba(255, 255, 255, 0.03);
+            padding: 3px 8px;
             border-radius: 6px;
             border: 1px solid var(--border-color);
         }
@@ -352,10 +355,11 @@ HTML_DASHBOARD = """
         .chat-history {
             flex: 1;
             overflow-y: auto;
-            padding: 32px;
+            padding: 32px 16px;
             display: flex;
             flex-direction: column;
-            gap: 24px;
+            gap: 32px;
+            width: 100%;
         }
 
         /* Custom Scrollbar */
@@ -364,7 +368,7 @@ HTML_DASHBOARD = """
         }
 
         .chat-history::-webkit-scrollbar-thumb, .sidebar::-webkit-scrollbar-thumb {
-            background-color: rgba(255, 255, 255, 0.08);
+            background-color: rgba(255, 255, 255, 0.06);
             border-radius: 3px;
         }
 
@@ -373,90 +377,136 @@ HTML_DASHBOARD = """
             width: 100%;
         }
 
+        .message-wrapper {
+            max-width: var(--content-max-width);
+            width: 100%;
+            margin: 0 auto;
+            display: flex;
+            gap: 16px;
+            align-items: flex-start;
+        }
+
+        /* User Message Bubble Alignment */
         .message-row.user {
             justify-content: flex-end;
         }
 
-        .message-bubble {
-            max-width: 75%;
-            padding: 16px 20px;
-            border-radius: 16px;
-            line-height: 1.5;
-            font-size: 0.95rem;
+        .message-row.user .message-wrapper {
+            justify-content: flex-end;
         }
 
         .message-row.user .message-bubble {
-            background: var(--accent-glow);
-            color: white;
-            border-bottom-right-radius: 4px;
-            box-shadow: 0 4px 16px rgba(99, 102, 241, 0.25);
-        }
-
-        .message-row.assistant .message-bubble {
-            background: var(--card-glass);
-            border: 1px solid var(--border-color);
+            background: rgba(99, 102, 241, 0.1);
+            border: 1px solid rgba(99, 102, 241, 0.25);
             color: var(--text-primary);
-            border-bottom-left-radius: 4px;
+            border-radius: 18px;
+            padding: 12px 18px;
+            max-width: 70%;
+            word-break: break-word;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+            font-size: 0.95rem;
+            line-height: 1.5;
         }
 
-        /* Citations Accordion */
-        .citations-section {
-            margin-top: 12px;
-            border-top: 1px solid var(--border-color);
+        /* Assistant Message styling */
+        .message-row.assistant .message-bubble {
+            width: 100%;
+            color: var(--text-primary);
+            font-size: 0.95rem;
+            line-height: 1.6;
+            word-break: break-word;
+        }
+
+        /* ChatGPT-style Avatars */
+        .avatar {
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 0.75rem;
+            flex-shrink: 0;
+        }
+
+        .avatar.user-avatar {
+            background: #4f46e5;
+            color: white;
+            order: 2;
+            margin-left: 10px;
+            display: none;
+        }
+
+        .avatar.assistant-avatar {
+            background: linear-gradient(135deg, #6366f1, #8b5cf6);
+            color: white;
+            box-shadow: 0 0 10px rgba(99, 102, 241, 0.2);
+        }
+
+        /* Sleek Citations Drawer */
+        .citations-container {
+            margin-top: 14px;
             padding-top: 10px;
+            border-top: 1px solid var(--border-color);
             display: flex;
             flex-direction: column;
             gap: 8px;
         }
 
-        .citation-header {
+        .citations-header {
             font-size: 0.75rem;
             font-weight: 700;
             color: var(--text-secondary);
             text-transform: uppercase;
-            letter-spacing: 0.02em;
+            letter-spacing: 0.05em;
         }
 
-        .citation-tags {
+        .citations-pills {
             display: flex;
             flex-wrap: wrap;
             gap: 8px;
         }
 
-        .citation-tag {
-            background: rgba(99, 102, 241, 0.1);
-            border: 1px solid rgba(99, 102, 241, 0.25);
+        .citation-pill {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid var(--border-color);
             padding: 4px 10px;
-            border-radius: 8px;
+            border-radius: 6px;
             font-size: 0.75rem;
-            color: #a5b4fc;
+            color: var(--text-secondary);
             cursor: pointer;
             transition: all 0.2s ease;
+            display: flex;
+            align-items: center;
+            gap: 6px;
         }
 
-        .citation-tag:hover {
-            background: rgba(99, 102, 241, 0.2);
-            border-color: rgba(99, 102, 241, 0.5);
+        .citation-pill:hover {
+            background: rgba(99, 102, 241, 0.08);
+            border-color: rgba(99, 102, 241, 0.3);
+            color: var(--text-primary);
         }
 
-        .citation-snippet {
+        .citation-drawer {
             display: none;
-            background: rgba(0, 0, 0, 0.2);
+            background: rgba(0, 0, 0, 0.15);
             border-left: 2px solid var(--accent-glow);
             padding: 10px 12px;
-            border-radius: 4px;
+            border-radius: 0 6px 6px 0;
             font-size: 0.8rem;
             color: var(--text-secondary);
-            line-height: 1.4;
+            line-height: 1.45;
             margin-top: 4px;
+            font-style: italic;
         }
 
-        .citation-snippet.active {
+        .citation-drawer.open {
             display: block;
-            animation: fadeIn 0.2s ease;
+            animation: slideDown 0.2s ease-out;
         }
 
-        @keyframes fadeIn {
+        @keyframes slideDown {
             from { opacity: 0; transform: translateY(-4px); }
             to { opacity: 1; transform: translateY(0); }
         }
@@ -465,13 +515,13 @@ HTML_DASHBOARD = """
         .typing-bubble {
             display: flex;
             align-items: center;
-            gap: 6px;
-            padding: 12px 18px !important;
+            gap: 5px;
+            padding: 8px 12px !important;
         }
 
         .typing-dot {
-            width: 6px;
-            height: 6px;
+            width: 5px;
+            height: 5px;
             background: var(--text-secondary);
             border-radius: 50%;
             animation: bounce 1.4s infinite ease-in-out;
@@ -485,28 +535,38 @@ HTML_DASHBOARD = """
             40% { transform: scale(1); }
         }
 
-        /* Input Container */
+        /* Centered Input Area */
         .input-area {
-            padding: 24px 32px 32px 32px;
+            padding: 16px 24px 24px 24px;
             background: linear-gradient(to top, var(--bg-primary) 70%, transparent);
-            position: relative;
+            width: 100%;
+        }
+
+        .input-container-centered {
+            max-width: var(--content-max-width);
+            width: 100%;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
         }
 
         .input-wrapper {
-            background: var(--card-glass);
+            background: rgba(31, 41, 55, 0.45);
             border: 1px solid var(--border-color);
-            border-radius: 16px;
-            padding: 8px 12px;
+            border-radius: 24px;
+            padding: 6px 12px 6px 20px;
             display: flex;
             align-items: center;
             gap: 12px;
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
-            transition: border-color 0.2s ease;
+            box-shadow: 0 4px 24px rgba(0, 0, 0, 0.2);
+            backdrop-filter: blur(12px);
+            transition: all 0.2s ease;
         }
 
         .input-wrapper:focus-within {
-            border-color: rgba(99, 102, 241, 0.5);
-            box-shadow: 0 8px 32px rgba(99, 102, 241, 0.05);
+            border-color: rgba(99, 102, 241, 0.45);
+            box-shadow: 0 4px 24px rgba(99, 102, 241, 0.05);
         }
 
         #query-input {
@@ -516,7 +576,7 @@ HTML_DASHBOARD = """
             outline: none;
             color: var(--text-primary);
             font-size: 0.95rem;
-            padding: 8px;
+            padding: 8px 0;
         }
 
         #query-input::placeholder {
@@ -526,30 +586,37 @@ HTML_DASHBOARD = """
         .send-btn {
             background: var(--accent-glow);
             border: none;
-            width: 40px;
-            height: 40px;
-            border-radius: 12px;
+            width: 34px;
+            height: 34px;
+            border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
             color: white;
             cursor: pointer;
             transition: all 0.2s ease;
+            flex-shrink: 0;
         }
 
         .send-btn:hover {
             background: var(--accent-hover);
-            transform: scale(1.03);
+            transform: scale(1.05);
         }
 
         .send-btn svg {
-            width: 18px;
-            height: 18px;
+            width: 16px;
+            height: 16px;
             fill: currentColor;
-            transform: rotate(45deg);
         }
 
-        /* Overlay loader */
+        .input-footer-text {
+            font-size: 0.7rem;
+            color: var(--text-secondary);
+            text-align: center;
+            margin-top: 4px;
+        }
+
+        /* Initial Screen */
         .initial-screen {
             display: flex;
             flex-direction: column;
@@ -562,13 +629,16 @@ HTML_DASHBOARD = """
         }
 
         .initial-icon {
-            font-size: 3rem;
+            width: 50px;
+            height: 50px;
             background: rgba(99, 102, 241, 0.1);
-            padding: 20px;
             border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
             border: 1px solid rgba(99, 102, 241, 0.2);
             color: var(--accent-glow);
-            box-shadow: 0 0 24px rgba(99, 102, 241, 0.1);
         }
 
         .initial-title {
@@ -597,7 +667,7 @@ HTML_DASHBOARD = """
             <!-- Upload Card -->
             <div class="upload-card" id="drop-zone">
                 <div class="progress-bar" id="upload-progress"></div>
-                <span class="upload-icon">📄</span>
+                <span class="upload-icon">📁</span>
                 <p class="upload-text">Upload PDF Document</p>
                 <p class="upload-subtext">Drag & drop or click to browse</p>
                 <input type="file" id="file-input" accept=".pdf">
@@ -625,7 +695,6 @@ HTML_DASHBOARD = """
                 </div>
                 <div class="perf-banner">
                     <div class="perf-item">Retrieval: <span id="perf-retrieval">-</span></div>
-                    <span style="color: var(--border-color)">|</span>
                     <div class="perf-item">Total Latency: <span id="perf-latency">-</span></div>
                 </div>
             </header>
@@ -633,21 +702,24 @@ HTML_DASHBOARD = """
             <!-- Chat History Panel -->
             <div class="chat-history" id="chat-container">
                 <div class="initial-screen" id="welcome-screen">
-                    <span class="initial-icon">🤖</span>
+                    <div class="initial-icon">💡</div>
                     <p class="initial-title">How can I assist you today?</p>
-                    <p class="initial-desc">Upload a PDF document to the database, and run questions against its content with grounded citations.</p>
+                    <p class="initial-desc">Upload a PDF document in the sidebar, and run questions against its content with grounded citations.</p>
                 </div>
             </div>
 
             <!-- Input area panel -->
             <div class="input-area">
-                <div class="input-wrapper">
-                    <input type="text" id="query-input" placeholder="Ask a question about your ingested documents..." autocomplete="off">
-                    <button class="send-btn" id="send-button" title="Send Question">
-                        <svg viewBox="0 0 24 24">
-                            <path d="M2,21L23,12L2,3V10L17,12L2,14V21Z"/>
-                        </svg>
-                    </button>
+                <div class="input-container-centered">
+                    <div class="input-wrapper">
+                        <input type="text" id="query-input" placeholder="Message RAG assistant..." autocomplete="off">
+                        <button class="send-btn" id="send-button" title="Send Question">
+                            <svg viewBox="0 0 24 24">
+                                <path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/>
+                            </svg>
+                        </button>
+                    </div>
+                    <p class="input-footer-text">Gemini-2.5-flash RAG model. Verify output details against source pages.</p>
                 </div>
             </div>
         </main>
@@ -744,7 +816,7 @@ HTML_DASHBOARD = """
                     </div>
                     <button class="doc-delete-btn" onclick="deleteDocument('${doc.document_id}')" title="Delete Document">
                         <svg viewBox="0 0 24 24">
-                            <path d="M19,4H15.5L14.5,3H9.5L8.5,4H5V6H19M6,19A2,2 0 0,0 8,21H16A2,2 0 0,0 18,19V7H6V19Z"/>
+                            <path d="M19,4H15.5L14.5,3H9.5L8.5,4H5V6H19M6,19A2,2 0 0,0 8,21H16A2,2 0 0,0 8,21H16A2,2 0 0,0 18,19V7H6V19Z"/>
                         </svg>
                     </button>
                 `;
@@ -811,7 +883,7 @@ HTML_DASHBOARD = """
             uploadStatus.innerText = 'Uploading file...';
             uploadStatus.style.display = 'block';
 
-            // Simulate upload progress (since fetch upload progress tracking is complex)
+            // Simulate upload progress
             let width = 0;
             const progressInterval = setInterval(() => {
                 if (width >= 90) {
@@ -918,6 +990,15 @@ HTML_DASHBOARD = """
             const row = document.createElement('div');
             row.className = `message-row ${sender}`;
             
+            const wrapper = document.createElement('div');
+            wrapper.className = 'message-wrapper';
+
+            // Add avatar icon
+            const avatar = document.createElement('div');
+            avatar.className = `avatar ${sender}-avatar`;
+            avatar.innerText = sender === 'user' ? 'U' : 'AI';
+            wrapper.appendChild(avatar);
+
             const bubble = document.createElement('div');
             bubble.className = 'message-bubble';
             bubble.innerText = text;
@@ -925,35 +1006,35 @@ HTML_DASHBOARD = """
             // Append citations structure if available (assistant responses only)
             if (sender === 'assistant' && citations.length > 0) {
                 const citSection = document.createElement('div');
-                citSection.className = 'citations-section';
-                citSection.innerHTML = `<div class="citation-header">Grounded Citations (${citations.length})</div>`;
+                citSection.className = 'citations-container';
+                citSection.innerHTML = `<div class="citations-header">Sources</div>`;
                 
-                const tagsContainer = document.createElement('div');
-                tagsContainer.className = 'citation-tags';
+                const pillsContainer = document.createElement('div');
+                pillsContainer.className = 'citations-pills';
 
                 citations.forEach((cit, index) => {
-                    const tag = document.createElement('div');
-                    tag.className = 'citation-tag';
-                    tag.innerText = `${cit.filename} (Page ${cit.page})`;
+                    const pill = document.createElement('div');
+                    pill.className = 'citation-pill';
+                    pill.innerHTML = `📄 ${cit.filename} (p. ${cit.page})`;
                     
-                    const snippet = document.createElement('div');
-                    snippet.className = 'citation-snippet';
-                    snippet.id = `snippet-${index}-${Date.now()}`;
-                    snippet.innerText = `Context: "${cit.text}"`;
+                    const drawer = document.createElement('div');
+                    drawer.className = 'citation-drawer';
+                    drawer.innerText = `Context chunk: "${cit.text}"`;
 
-                    tag.addEventListener('click', () => {
-                        snippet.classList.toggle('active');
+                    pill.addEventListener('click', () => {
+                        drawer.classList.toggle('open');
                     });
 
-                    tagsContainer.appendChild(tag);
-                    citSection.appendChild(snippet);
+                    pillsContainer.appendChild(pill);
+                    citSection.appendChild(drawer);
                 });
 
-                citSection.appendChild(tagsContainer);
+                citSection.appendChild(pillsContainer);
                 bubble.appendChild(citSection);
             }
 
-            row.appendChild(bubble);
+            wrapper.appendChild(bubble);
+            row.appendChild(wrapper);
             chatContainer.appendChild(row);
         }
 
@@ -961,6 +1042,14 @@ HTML_DASHBOARD = """
         function appendTypingIndicator() {
             const row = document.createElement('div');
             row.className = 'message-row assistant';
+
+            const wrapper = document.createElement('div');
+            wrapper.className = 'message-wrapper';
+
+            const avatar = document.createElement('div');
+            avatar.className = 'avatar assistant-avatar';
+            avatar.innerText = 'AI';
+            wrapper.appendChild(avatar);
 
             const bubble = document.createElement('div');
             bubble.className = 'message-bubble typing-bubble';
@@ -970,7 +1059,8 @@ HTML_DASHBOARD = """
                 <div class="typing-dot"></div>
             `;
 
-            row.appendChild(bubble);
+            wrapper.appendChild(bubble);
+            row.appendChild(wrapper);
             chatContainer.appendChild(row);
             return row;
         }

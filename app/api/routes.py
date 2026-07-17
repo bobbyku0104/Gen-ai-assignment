@@ -1003,35 +1003,7 @@ HTML_DASHBOARD = """
             bubble.className = 'message-bubble';
             bubble.innerText = text;
 
-            // Append citations structure if available (assistant responses only)
-            if (sender === 'assistant' && citations.length > 0) {
-                const citSection = document.createElement('div');
-                citSection.className = 'citations-container';
-                citSection.innerHTML = `<div class="citations-header">Sources</div>`;
-                
-                const pillsContainer = document.createElement('div');
-                pillsContainer.className = 'citations-pills';
 
-                citations.forEach((cit, index) => {
-                    const pill = document.createElement('div');
-                    pill.className = 'citation-pill';
-                    pill.innerHTML = `📄 ${cit.filename} (p. ${cit.page})`;
-                    
-                    const drawer = document.createElement('div');
-                    drawer.className = 'citation-drawer';
-                    drawer.innerText = `Context chunk: "${cit.text}"`;
-
-                    pill.addEventListener('click', () => {
-                        drawer.classList.toggle('open');
-                    });
-
-                    pillsContainer.appendChild(pill);
-                    citSection.appendChild(drawer);
-                });
-
-                citSection.appendChild(pillsContainer);
-                bubble.appendChild(citSection);
-            }
 
             wrapper.appendChild(bubble);
             row.appendChild(wrapper);
